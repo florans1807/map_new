@@ -16,6 +16,7 @@
 		4A9C67482B10D5E8008D0282 /* mapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9C67472B10D5E8008D0282 /* mapTests.swift */; };
 		4A9C67522B10D5E8008D0282 /* mapUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9C67512B10D5E8008D0282 /* mapUITests.swift */; };
 		4A9C67542B10D5E8008D0282 /* mapUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9C67532B10D5E8008D0282 /* mapUITestsLaunchTests.swift */; };
+		4A9C67612B10DCE7008D0282 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9C67602B10DCE7008D0282 /* MapViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		4A9C674D2B10D5E8008D0282 /* mapUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = mapUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A9C67512B10D5E8008D0282 /* mapUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mapUITests.swift; sourceTree = "<group>"; };
 		4A9C67532B10D5E8008D0282 /* mapUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mapUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		4A9C67602B10DCE7008D0282 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 				4A9C67392B10D5E8008D0282 /* Assets.xcassets */,
 				4A9C673B2B10D5E8008D0282 /* LaunchScreen.storyboard */,
 				4A9C673E2B10D5E8008D0282 /* Info.plist */,
+				4A9C67602B10DCE7008D0282 /* MapViewController.swift */,
 			);
 			path = map;
 			sourceTree = "<group>";
@@ -261,6 +264,7 @@
 				4A9C67352B10D5E5008D0282 /* ViewController.swift in Sources */,
 				4A9C67312B10D5E5008D0282 /* AppDelegate.swift in Sources */,
 				4A9C67332B10D5E5008D0282 /* SceneDelegate.swift in Sources */,
+				4A9C67612B10DCE7008D0282 /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -437,6 +441,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ZDU8QSD76H;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = map/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -444,6 +449,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -464,6 +470,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ZDU8QSD76H;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = map/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -471,6 +478,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
