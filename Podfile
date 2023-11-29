@@ -6,7 +6,7 @@ target 'map' do
   use_frameworks!
 
   # Pods for map
-  pod 'YandexMapkit'
+  pod 'Bottomsheet'
 
   target 'mapTests' do
     inherit! :search_paths

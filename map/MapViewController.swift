@@ -9,10 +9,25 @@ import UIKit
 import MapKit
 import CoreLocation
 
+
 class MapViewController: UIViewController {
     
     @IBOutlet weak var mapView: MKMapView!
     
+    private var chosenPin = ""
+    
+    private var queue = Queue<String>()
+    
+    private var pins = [MKAnnotation]()
+    
+    let customView: UIView = {
+        var view = UIView()
+        view.backgroundColor = .red
+        view.translatesAutoresizingMaskIntoConstraints = false
+        //view.isHidden = true
+        return view
+    }()
+        
     lazy var locationManager: CLLocationManager = {
         var manager = CLLocationManager()
         manager.distanceFilter = 10
@@ -25,24 +40,18 @@ class MapViewController: UIViewController {
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
-        
         mapView.delegate = self
-        //addPins()
-                
-//        locationManager = CLLocationManager()
-//        locationManager.requestAlwaysAuthorization()
-//        
-//        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-//        locationManager.delegate = self
-//        locationManager.startUpdatingLocation()
-//
-//        mapView.showsUserLocation = true
-//        mapView.delegate = self
+        //mapView.bringSubviewToFront(customView)
+        //setBottomView()
+        addPins()
+        createQueueOfPins()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        //checkLocationEnabled()
+    func setBottomView() {
+        customView.bottomAnchor.constraint(equalTo: mapView.bottomAnchor).isActive = true
+        customView.leadingAnchor.constraint(equalTo: mapView.leadingAnchor).isActive = true
+        customView.trailingAnchor.constraint(equalTo: mapView.trailingAnchor).isActive = true
+        customView.heightAnchor.constraint(equalToConstant: 80.0).isActive = true
     }
     
     func updateLocationOnMap(to location: CLLocation, with title: String?)
@@ -77,8 +86,14 @@ class MapViewController: UIViewController {
         let point2 = MKPointAnnotation()
         point2.title = "Saul"
         point2.subtitle = "GPS," + self.dateFormatting()
-        point2.coordinate = CLLocationCoordinate2D(latitude: 59.152231211472646, longitude: 49.17689228042594)
+        point2.coordinate = CLLocationCoordinate2D(latitude: 56.149291, longitude: 47.163708)
         self.mapView.addAnnotation(point2)
+        
+        let point3 = MKPointAnnotation()
+        point3.title = "Walt"
+        point3.subtitle = "GPS," + self.dateFormatting()
+        point3.coordinate = CLLocationCoordinate2D(latitude: 56.100937, longitude: 47.272647)
+        self.mapView.addAnnotation(point3)
     }
     
     @IBAction func onLocationButtonTapped() {
@@ -100,6 +115,35 @@ class MapViewController: UIViewController {
         self.mapView.setRegion(region, animated: true)
     }
     
+    @IBAction func moveToAnotherPin() {
+        for anno in pins {
+            let coordinateOfAnnotation = anno.coordinate
+            let abc = queue.head
+            if anno.title != chosenPin && anno.title == abc {
+                queue.removeAndAppendFirst()
+                
+                if let title = anno.title {
+                    chosenPin = title ?? ""
+                }
+                
+                let region = self.mapView.regionThatFits(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: coordinateOfAnnotation.latitude, longitude: coordinateOfAnnotation.longitude), latitudinalMeters: 200, longitudinalMeters: 200))
+               self.mapView.setRegion(region, animated: true)
+                
+                break
+            }
+        }
+        
+    }
+    
+    func createQueueOfPins() {
+        for anno in mapView.annotations {
+            if let title = anno.title, !pins.contains(where: { $0.title == title }) {
+                pins.append(anno)
+                queue.enqueue(title!)
+            }
+        }
+    }
+    
     func dateFormatting() -> String {
         let date = Date()
         let dateFormatter = DateFormatter()
@@ -109,55 +153,12 @@ class MapViewController: UIViewController {
         return "\(mydt)"
     }
     
-//    func checkLocationEnabled() {
-//        if CLLocationManager.locationServicesEnabled() {
-//            setupManager()
-//            checkAuthorization()
-//        } else {
-//            showAlertLocation(title: "Geolocation is off", message: "Switch on?", url: URL(string: "App-Prefs:root=LOCATION_SERVICES"))
-//        }
-//    }
-//    
-//    func setupManager() {
-//        locationManager.delegate = self
-//        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-//    }
-//    
-//    func checkAuthorization() {
-//        switch CLLocationManager.authorizationStatus() {
-//        case .authorizedAlways:
-//            break
-//        case .authorizedWhenInUse:
-//            mapView.showsUserLocation = true
-//            locationManager.startUpdatingLocation()
-//            break
-//        case .denied:
-//            showAlertLocation(title: "Using geo is banned", message: "Change it?", url: URL(string: UIApplication.openSettingsURLString))
-//            break
-//        case .restricted:
-//            break
-//        case .notDetermined:
-//            locationManager.requestWhenInUseAuthorization()
-//            
-//        }
-//    }
-//    
-//    func showAlertLocation(title: String, message: String?, url: URL?) {
-//        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+//    func showPopup() {
+//        guard let popupViewController = CustomPopupVIew.instantiate() else { return }
+//        popupViewController.delegate = self
 //        
-//        let settings = UIAlertAction(title: "Настройки", style: .default) { (alert) in
-//            if let url = URL(string: "App-Prefs:root=LOCATION_SERVICES") {
-//                UIApplication.shared.open(url, options: [:], completionHandler: nil)
-//            }
-//        }
-//        let cancelAction = UIAlertAction(title: "Отмена", style: .cancel, handler: nil)
-//        
-//        alert.addAction(settings)
-//        alert.addAction(cancelAction)
-//        
-//        present(alert, animated: true, completion: nil)
+//        let popupVC = Pop
 //    }
-    
 }
 
 extension MapViewController: CLLocationManagerDelegate, MKMapViewDelegate {
@@ -169,10 +170,7 @@ extension MapViewController: CLLocationManagerDelegate, MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-//        if annotation is MKUserLocation {
-//            
-//        }
-        
+
         var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "custom")
         
         if annotationView == nil {
@@ -180,56 +178,72 @@ extension MapViewController: CLLocationManagerDelegate, MKMapViewDelegate {
         } else {
             annotationView?.annotation = annotation
         }
+        annotationView?.canShowCallout = true
         
         switch annotation.title {
         case "User Location":
             annotationView?.image = UIImage(named: "user_location")
-        case "Rob":
-            let imageView = UIImageView(image: UIImage(named: "pin"))
-            annotationView?.rightCalloutAccessoryView = imageView
-        case "Bob":
+            annotationView?.canShowCallout = false
+        case "Mike":
             annotationView?.image = UIImage(named: "pin")
+            annotationView?.tintColor = .blue
+        case "Saul":
+            annotationView?.image = UIImage(named: "pin")
+            annotationView?.tintColor = .green
         default:
             annotationView?.image = UIImage(named: "pin")
+            annotationView?.tintColor = .red
         }
-        annotationView?.canShowCallout = true
         return annotationView
     }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        //
+        if let title = view.annotation?.title {
+            chosenPin = title ?? ""
+        }
+    }
+        
+    func mapView(_ mapView: MKMapView, didDeselect annotation: MKAnnotation) {
+        chosenPin = ""
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        addPins()
-//        let point1 = MKPointAnnotation()
-//        point1.title = "Rob"
-//        point1.coordinate = CLLocationCoordinate2D(latitude: 51.519066, longitude: -0.135200)
-//        self.mapView.addAnnotation(point1)
-//        
-//        let region = self.mapView.regionThatFits(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 51.519066, longitude: -0.135200), latitudinalMeters: 200, longitudinalMeters: 200))
-//        self.mapView.setRegion(region, animated: true)
-        
-//        if let coordinate = locationManager.location?.coordinate {
-//            let point = MKPointAnnotation()
-//            point.title = "Bob"
-//            point.subtitle = "I'm here!!!"
-//            point.coordinate = CLLocationCoordinate2D(latitude: 56.152231211472646, longitude: 47.17689228042594)
-//            self.mapView.addAnnotation(point)
-//            
-//            //            let region = self.mapView.regionThatFits(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 51.519066, longitude: -0.135200), latitudinalMeters: 200, longitudinalMeters: 200))
-//            //            self.mapView.setRegion(region, animated: true)
-//        }
+        //addPins()
     }
-    
-    
-//    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-//        if let location = locations.last?.coordinate {
-//            let region = MKCoordinateRegion(center: location, latitudinalMeters: 5000, longitudinalMeters: 5000)
-//            mapView.setRegion(region, animated: true)
-//        }
-//    }
-//    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-//        checkAuthorization()
-//    }
+}
+
+struct Queue<T> {
+  private var elements: [T] = []
+
+  mutating func enqueue(_ value: T) {
+    elements.append(value)
+  }
+
+  mutating func dequeue() -> T? {
+    guard !elements.isEmpty else {
+      return nil
+    }
+    return elements.removeFirst()
+  }
+
+  mutating func removeAndAppendFirst() {
+      if let element = elements.first {
+          elements.removeFirst()
+          elements.append(element)
+      }
+  }
+
+  var head: T? {
+    return elements.first
+  }
+
+  var tail: T? {
+    return elements.last
+  }
+}
+
+extension MKMapView {
+    func visibleAnnotations() -> [MKAnnotation] {
+        return self.annotations(in: self.visibleMapRect).map { obj -> MKAnnotation in return obj as! MKAnnotation }
+    }
 }

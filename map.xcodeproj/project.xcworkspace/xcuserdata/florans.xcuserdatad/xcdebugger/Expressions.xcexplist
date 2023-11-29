@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "MapViewController.moveToAnotherPin():MapViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "mapView.annotations">
+            </PersistentString>
+            <PersistentString
+               value = "chosenPin">
+            </PersistentString>
+            <PersistentString
+               value = "pins">
+            </PersistentString>
+            <PersistentString
+               value = "queue">
+            </PersistentString>
+            <PersistentString
+               value = "anno.title">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "MapViewController.createQueueOfPins():MapViewController.swift">
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>
