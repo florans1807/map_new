@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
         <capability name="Map view configurations" minToolsVersion="14.0"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -15,15 +16,15 @@
             <objects>
                 <viewController storyboardIdentifier="MapViewController" id="BYZ-38-t0r" customClass="MapViewController" customModule="map" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K7t-Ip-NwK">
-                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                                <rect key="frame" x="0.0" y="59" width="414" height="803"/>
                                 <standardMapConfiguration key="preferredConfiguration"/>
                             </mapView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="rjf-Io-xRS">
-                                <rect key="frame" x="327" y="247" width="50" height="210"/>
+                                <rect key="frame" x="348" y="232" width="50" height="210"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J6Y-5h-FU3">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="45"/>
@@ -87,6 +88,88 @@
                                     <constraint firstAttribute="height" constant="210" id="yij-0f-vhu"/>
                                 </constraints>
                             </stackView>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HA1-xG-bog">
+                                <rect key="frame" x="0.0" y="740" width="414" height="156"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="face1" translatesAutoresizingMaskIntoConstraints="NO" id="AKj-mf-N0T">
+                                        <rect key="frame" x="16" y="19" width="56" height="55"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="55" id="oZV-wN-B1G"/>
+                                            <constraint firstAttribute="width" constant="56" id="xwP-We-Zd7"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <integer key="value" value="26"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </imageView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="dwm-Pd-GA7">
+                                        <rect key="frame" x="91" y="47.666666666666629" width="272" height="11.333333333333336"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="62F-EL-ZAo">
+                                                <rect key="frame" x="0.0" y="0.0" width="57.666666666666664" height="11.333333333333334"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="GPS" image="wifi" catalog="system">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4NZ-97-9s6">
+                                                <rect key="frame" x="77.666666666666657" y="0.0" width="108.66666666666666" height="11.333333333333334"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="14.10.2022" image="calendar" catalog="system">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HDg-nh-zaq">
+                                                <rect key="frame" x="206.33333333333331" y="0.0" width="65.666666666666686" height="11.333333333333334"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="14:00" image="clock" catalog="system">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Илья" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nMX-jI-zXG">
+                                        <rect key="frame" x="91" y="19" width="42.333333333333343" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="XFr-9M-gaA"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pz7-sD-yaH">
+                                        <rect key="frame" x="91" y="80" width="226" height="45"/>
+                                        <color key="backgroundColor" name="AccentColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="45" id="ECM-17-jNk"/>
+                                            <constraint firstAttribute="width" constant="226" id="XEb-iG-cfH"/>
+                                        </constraints>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="Посмотреть историю">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <integer key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="156" id="0eg-Ib-xsS"/>
+                                    <constraint firstItem="dwm-Pd-GA7" firstAttribute="top" secondItem="nMX-jI-zXG" secondAttribute="bottom" constant="8.6666666666666714" id="6UT-d6-gEo"/>
+                                    <constraint firstItem="AKj-mf-N0T" firstAttribute="leading" secondItem="HA1-xG-bog" secondAttribute="leading" constant="16" id="B8N-8A-Ucs"/>
+                                    <constraint firstItem="dwm-Pd-GA7" firstAttribute="leading" secondItem="nMX-jI-zXG" secondAttribute="leading" id="G6j-LR-Oqs"/>
+                                    <constraint firstAttribute="bottom" secondItem="pz7-sD-yaH" secondAttribute="bottom" constant="31" id="ZvZ-5q-N9l"/>
+                                    <constraint firstItem="nMX-jI-zXG" firstAttribute="top" secondItem="AKj-mf-N0T" secondAttribute="top" id="dcr-wv-Q7c"/>
+                                    <constraint firstItem="nMX-jI-zXG" firstAttribute="leading" secondItem="AKj-mf-N0T" secondAttribute="trailing" constant="19" id="lDp-uZ-Txp"/>
+                                    <constraint firstItem="pz7-sD-yaH" firstAttribute="leading" secondItem="dwm-Pd-GA7" secondAttribute="leading" id="v6c-5j-D5z"/>
+                                    <constraint firstItem="pz7-sD-yaH" firstAttribute="top" secondItem="dwm-Pd-GA7" secondAttribute="bottom" constant="21" id="vfV-iW-New"/>
+                                    <constraint firstItem="AKj-mf-N0T" firstAttribute="top" secondItem="HA1-xG-bog" secondAttribute="top" constant="19" id="yFw-8I-fTe"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -97,10 +180,18 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="K7t-Ip-NwK" secondAttribute="trailing" id="T14-VD-G2q"/>
                             <constraint firstItem="K7t-Ip-NwK" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="UOn-p6-a1a"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="K7t-Ip-NwK" secondAttribute="bottom" id="UyX-J0-sDn"/>
+                            <constraint firstItem="HA1-xG-bog" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="f6L-Iz-JUO"/>
+                            <constraint firstAttribute="bottom" secondItem="HA1-xG-bog" secondAttribute="bottom" id="pkH-hb-aEc"/>
+                            <constraint firstItem="HA1-xG-bog" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="tUP-mk-gdj"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="dateBtn" destination="4NZ-97-9s6" id="dTS-Zq-3sg"/>
+                        <outlet property="detailView" destination="HA1-xG-bog" id="Iq7-vM-gCh"/>
                         <outlet property="mapView" destination="K7t-Ip-NwK" id="W4d-ZU-vtp"/>
+                        <outlet property="nameLabel" destination="nMX-jI-zXG" id="Tde-fK-zfz"/>
+                        <outlet property="timeBtn" destination="HDg-nh-zaq" id="lLq-IR-HII"/>
+                        <outlet property="userImageView" destination="AKj-mf-N0T" id="KJ7-7W-RGT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -109,10 +200,17 @@
         </scene>
     </scenes>
     <resources>
+        <image name="calendar" catalog="system" width="128" height="107"/>
+        <image name="clock" catalog="system" width="128" height="123"/>
+        <image name="face1" width="1143" height="1200"/>
         <image name="geo" width="83" height="83"/>
         <image name="minus_icon" width="83" height="83"/>
         <image name="plus_icon" width="83" height="83"/>
         <image name="segue" width="83" height="83"/>
+        <image name="wifi" catalog="system" width="128" height="90"/>
+        <namedColor name="AccentColor">
+            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

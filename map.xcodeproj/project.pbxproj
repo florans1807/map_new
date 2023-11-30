@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		3EF06AA0EE69E08FAE9F176B /* Pods_map_mapUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36EBC9BAA9E24DED04E1EA33 /* Pods_map_mapUITests.framework */; };
-		4A9401982B163F5500FC2E1C /* CustomPopupVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9401972B163F5500FC2E1C /* CustomPopupVIew.swift */; };
 		4A9C67312B10D5E5008D0282 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9C67302B10D5E5008D0282 /* AppDelegate.swift */; };
 		4A9C67332B10D5E5008D0282 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9C67322B10D5E5008D0282 /* SceneDelegate.swift */; };
 		4A9C67352B10D5E5008D0282 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9C67342B10D5E5008D0282 /* ViewController.swift */; };
@@ -19,6 +18,7 @@
 		4A9C67522B10D5E8008D0282 /* mapUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9C67512B10D5E8008D0282 /* mapUITests.swift */; };
 		4A9C67542B10D5E8008D0282 /* mapUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9C67532B10D5E8008D0282 /* mapUITestsLaunchTests.swift */; };
 		4A9C67612B10DCE7008D0282 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9C67602B10DCE7008D0282 /* MapViewController.swift */; };
+		4AB7E2442B177FC9009494C8 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB7E2432B177FC9009494C8 /* Extensions.swift */; };
 		DE317D4360C664362A4143D7 /* Pods_mapTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB596E527A528A4BE16BFB23 /* Pods_mapTests.framework */; };
 		E0D5195052EAB1E7C594FCEE /* Pods_map.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F45ECE4ECD030F2A692A304 /* Pods_map.framework */; };
 /* End PBXBuildFile section */
@@ -43,7 +43,6 @@
 /* Begin PBXFileReference section */
 		104843F5C2A4136B84533352 /* Pods-map-mapUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-map-mapUITests.release.xcconfig"; path = "Target Support Files/Pods-map-mapUITests/Pods-map-mapUITests.release.xcconfig"; sourceTree = "<group>"; };
 		36EBC9BAA9E24DED04E1EA33 /* Pods_map_mapUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_map_mapUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4A9401972B163F5500FC2E1C /* CustomPopupVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPopupVIew.swift; sourceTree = "<group>"; };
 		4A9C672D2B10D5E4008D0282 /* map.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = map.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A9C67302B10D5E5008D0282 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4A9C67322B10D5E5008D0282 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -58,6 +57,7 @@
 		4A9C67512B10D5E8008D0282 /* mapUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mapUITests.swift; sourceTree = "<group>"; };
 		4A9C67532B10D5E8008D0282 /* mapUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mapUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		4A9C67602B10DCE7008D0282 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		4AB7E2432B177FC9009494C8 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		4F45ECE4ECD030F2A692A304 /* Pods_map.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_map.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6704217BA06F19628BC987A1 /* Pods-map.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-map.release.xcconfig"; path = "Target Support Files/Pods-map/Pods-map.release.xcconfig"; sourceTree = "<group>"; };
 		6DE69814B0D8BBD188DC2E58 /* Pods-mapTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mapTests.debug.xcconfig"; path = "Target Support Files/Pods-mapTests/Pods-mapTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -141,7 +141,7 @@
 				4A9C673B2B10D5E8008D0282 /* LaunchScreen.storyboard */,
 				4A9C673E2B10D5E8008D0282 /* Info.plist */,
 				4A9C67602B10DCE7008D0282 /* MapViewController.swift */,
-				4A9401972B163F5500FC2E1C /* CustomPopupVIew.swift */,
+				4AB7E2432B177FC9009494C8 /* Extensions.swift */,
 			);
 			path = map;
 			sourceTree = "<group>";
@@ -267,7 +267,6 @@
 			);
 			mainGroup = 4A9C67242B10D5E4008D0282;
 			packageReferences = (
-				4A9401992B164ABF00FC2E1C /* XCRemoteSwiftPackageReference "Bottomsheet" */,
 			);
 			productRefGroup = 4A9C672E2B10D5E4008D0282 /* Products */;
 			projectDirPath = "";
@@ -417,9 +416,9 @@
 			files = (
 				4A9C67352B10D5E5008D0282 /* ViewController.swift in Sources */,
 				4A9C67312B10D5E5008D0282 /* AppDelegate.swift in Sources */,
-				4A9401982B163F5500FC2E1C /* CustomPopupVIew.swift in Sources */,
 				4A9C67332B10D5E5008D0282 /* SceneDelegate.swift in Sources */,
 				4A9C67612B10DCE7008D0282 /* MapViewController.swift in Sources */,
+				4AB7E2442B177FC9009494C8 /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -765,17 +764,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		4A9401992B164ABF00FC2E1C /* XCRemoteSwiftPackageReference "Bottomsheet" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/hryk224/Bottomsheet.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.4.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
 	};
 	rootObject = 4A9C67252B10D5E4008D0282 /* Project object */;
 }
