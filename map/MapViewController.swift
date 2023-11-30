@@ -52,29 +52,6 @@ class MapViewController: UIViewController {
         userImageView.layer.borderColor = UIColor.blue.cgColor
     }
     
-    //getting current user location
-    func updateLocationOnMap(to location: CLLocation, with title: String?)
-    {
-        var isUserLocationAnnotationExist = false
-        
-        for anno in mapView.annotations {
-            if anno.title == "User Location" {
-                isUserLocationAnnotationExist = true
-                break
-            }
-        }
-        
-        if !isUserLocationAnnotationExist {
-            let point = MKPointAnnotation()
-            point.title = title
-            point.coordinate = location.coordinate
-            self.mapView.addAnnotation(point)
-        }
-        
-        let region = MKCoordinateRegion(center: location.coordinate, latitudinalMeters: 100, longitudinalMeters: 100)
-        self.mapView.setRegion(region, animated: true)
-    }
-    
     //adding custom annotations
     func addPins() {
         let point1 = MKPointAnnotation()
@@ -101,6 +78,33 @@ class MapViewController: UIViewController {
         updateLocationOnMap(to: locationManager.location ?? CLLocation(), with: "User Location")
     }
     
+    //getting current user location
+    func updateLocationOnMap(to location: CLLocation, with title: String?)
+    {
+        var isUserLocationAnnotationExist = false
+        
+        for anno in mapView.annotations {
+            if anno.title == "User Location" {
+                if anno.coordinate.latitude == location.coordinate.latitude && anno.coordinate.longitude == location.coordinate.longitude {
+                    isUserLocationAnnotationExist = true
+                    break
+                } else {
+                    mapView.removeAnnotation(anno)
+                }
+            }
+        }
+        
+        if !isUserLocationAnnotationExist {
+            let point = MKPointAnnotation()
+            point.title = title
+            point.coordinate = location.coordinate
+            self.mapView.addAnnotation(point)
+        }
+        
+        let region = MKCoordinateRegion(center: location.coordinate, latitudinalMeters: 100, longitudinalMeters: 100)
+        self.mapView.setRegion(region, animated: true)
+    }
+    
     @IBAction func plusZoomTapped() {
         var region = self.mapView.region
         region.span.latitudeDelta /= 2.0
@@ -118,13 +122,12 @@ class MapViewController: UIViewController {
     @IBAction func moveToAnotherPin() {
         for anno in pins {
             detailView.isHidden = true
-            let coordinateOfAnnotation = anno.coordinate
             if anno.title != chosenPin && anno.title == queue.head {
                 queue.removeAndAppendFirst()
                 if let title = anno.title {
                     chosenPin = title ?? ""
                 }
-                let region = self.mapView.regionThatFits(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: coordinateOfAnnotation.latitude, longitude: coordinateOfAnnotation.longitude), latitudinalMeters: 200, longitudinalMeters: 200))
+                let region = self.mapView.regionThatFits(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: anno.coordinate.latitude, longitude: anno.coordinate.longitude), latitudinalMeters: 200, longitudinalMeters: 200))
                 self.mapView.setRegion(region, animated: true)
                 break
             }
@@ -183,16 +186,18 @@ extension MapViewController: CLLocationManagerDelegate, MKMapViewDelegate {
             annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "custom")
         } else {
             annotationView?.annotation = annotation
+            //return annotationView
         }
         annotationView?.canShowCallout = true
         
         switch annotation.title {
         case "User Location":
             annotationView?.image = UIImage(named: "user_location")
+            annotationView?.subviews.forEach({ $0.removeFromSuperview() })
             annotationView?.canShowCallout = false
         case "Mike":
             let imageViewOfPin: UIImageView = {
-                var image = UIImageView()
+                let image = UIImageView()
                 image.frame = CGRect(x: 23, y: 18, width: 65, height: 65)
                 image.layer.masksToBounds = true
                 image.layer.cornerRadius = 28.0
@@ -204,7 +209,7 @@ extension MapViewController: CLLocationManagerDelegate, MKMapViewDelegate {
             imageViewOfPin.image = UIImage(named: "face2")
         case "Saul":
             let imageViewOfPin: UIImageView = {
-                var image = UIImageView()
+                let image = UIImageView()
                 image.frame = CGRect(x: 23, y: 18, width: 65, height: 65)
                 image.layer.masksToBounds = true
                 image.layer.cornerRadius = 28.0
@@ -216,7 +221,7 @@ extension MapViewController: CLLocationManagerDelegate, MKMapViewDelegate {
             imageViewOfPin.image = UIImage(named: "face3")
         case "Walt":
             let imageViewOfPin: UIImageView = {
-                var image = UIImageView()
+                let image = UIImageView()
                 image.frame = CGRect(x: 23, y: 18, width: 65, height: 65)
                 image.layer.masksToBounds = true
                 image.layer.cornerRadius = 28.0
@@ -233,8 +238,9 @@ extension MapViewController: CLLocationManagerDelegate, MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        if let title = view.annotation?.title {
+        if let title = view.annotation?.title, title != "User Location" {
             chosenPin = title ?? ""
+            detailView.isHidden = false
         }
         
         switch chosenPin {
@@ -253,8 +259,6 @@ extension MapViewController: CLLocationManagerDelegate, MKMapViewDelegate {
         format.dateFormat = "dd-MM-yyyy"
         dateBtn.setTitle(format.string(from: Date()), for: .normal)
         timeBtn.setTitle(self.dateFormatting(), for: .normal)
-        
-        detailView.isHidden = false
     }
         
     func mapView(_ mapView: MKMapView, didDeselect annotation: MKAnnotation) {
